@@ -127,13 +127,17 @@ public class AutoCompleteBean {
 			this.route = jumpCalculator.shortestRoute(this.currentSystem,
 					this.toSystem, minSecurity, maxSecurity);
 		} catch (NoPathExistsException_Exception e) {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage("There is no path that satisfies these criteria"));
+			FacesMessage error = new FacesMessage("There is no path that satisfies these criteria");
+			error.setSeverity(FacesMessage.SEVERITY_ERROR);
+			FacesContext.getCurrentInstance().addMessage(null, error);
 		} catch (NotARealSolarSystemException e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+			FacesMessage error = new FacesMessage(e.getMessage());
+			error.setSeverity(FacesMessage.SEVERITY_ERROR);
+			FacesContext.getCurrentInstance().addMessage(null, error);
 		} catch (NotEnoughArgumentsException e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Please fill in both to and from"));
+			FacesMessage error = new FacesMessage("Please fill in both to and from");
+			error.setSeverity(FacesMessage.SEVERITY_ERROR);
+			FacesContext.getCurrentInstance().addMessage(null, error);
 		}
 	}
 
