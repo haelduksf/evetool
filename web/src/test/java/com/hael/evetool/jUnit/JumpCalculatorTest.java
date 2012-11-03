@@ -57,6 +57,12 @@ public class JumpCalculatorTest {
 		Mockito.stub(c.getName()).toReturn("c");
 		Mockito.stub(d.getName()).toReturn("d");
 		Mockito.stub(e.getName()).toReturn("e");
+		
+		Mockito.stub(a.getSecurity()).toReturn(1f);
+		Mockito.stub(b.getSecurity()).toReturn(1f);
+		Mockito.stub(c.getSecurity()).toReturn(1f);
+		Mockito.stub(d.getSecurity()).toReturn(1f);
+		Mockito.stub(e.getSecurity()).toReturn(0f);
 
 		Mockito.stub(a.getNeighbours()).toReturn(Arrays.asList(e, b));
 		Mockito.stub(b.getNeighbours()).toReturn(Arrays.asList(a, c));
@@ -85,8 +91,10 @@ public class JumpCalculatorTest {
 	public void testShortestRoute() throws Exception {
 		
 
-		List<SolarSystem> result = tester.shortestRoute("a", "d");
-		Assert.assertEquals(result, Arrays.asList(a, e, d));
+		List<SolarSystem> result = tester.shortestRoute("a", "d", -1, 1);
+		Assert.assertEquals(Arrays.asList(a, e, d), result);
+		result = tester.shortestRoute("a", "d", 0.5f, 1);
+		Assert.assertEquals(Arrays.asList(a, b, c, d), result);
 	}
 	
 	/**
@@ -99,7 +107,7 @@ public class JumpCalculatorTest {
 	@Test
 	public void testZeroPath() throws Exception {
 		
-		List<SolarSystem> result = tester.shortestRoute("a", "a");
+		List<SolarSystem> result = tester.shortestRoute("a", "a", -1, 1);
 		Assert.assertTrue(result.get(0).equals(a) && result.get(result.size() - 1).equals(a));
 	}
 
@@ -115,30 +123,36 @@ public class JumpCalculatorTest {
 
 		int exceptionsThrown = 0;
 		try {
-			tester.shortestRoute("a", "x");
+			tester.shortestRoute("a", "x", -1, 1);
 		} catch (NoPathExistsException e) {
 			log.info("NoRoute test 1 success");
 			exceptionsThrown++;
 		}
 		try {
-			tester.shortestRoute("x", "a");
+			tester.shortestRoute("x", "a", -1, 1);
 		} catch (NoPathExistsException e1) {
 			log.info("NoRoute test 2 success");
 			exceptionsThrown++;
 		}
 		try {
-			tester.shortestRoute("a", "y");
+			tester.shortestRoute("a", "y", -1, 1);
 		} catch (NoPathExistsException e2) {
 			log.info("NoRoute test 3 success");
 			exceptionsThrown++;
 		}
 		try {
-			tester.shortestRoute("z", "a");
+			tester.shortestRoute("z", "a", -1, 1);
 		} catch (NoPathExistsException e3) {
 			log.info("NoRoute test 4 success");
 			exceptionsThrown++;
 		}
-		Assert.assertEquals(4, exceptionsThrown);
+		try {
+			tester.shortestRoute("a", "c", -1, -1);
+		} catch (NoPathExistsException e4) {
+			log.info("NoRoute test 5 success");
+			exceptionsThrown++;
+		}
+		Assert.assertEquals(5, exceptionsThrown);
 	}
 	
 	

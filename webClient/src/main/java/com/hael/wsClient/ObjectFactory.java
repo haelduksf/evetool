@@ -26,20 +26,20 @@ public class ObjectFactory {
 
     private final static QName _SystemNameLookup_QNAME = new QName("http://evetool.hael.com/", "systemNameLookup");
     private final static QName _GetPcKillsForResponse_QNAME = new QName("http://evetool.hael.com/", "getPcKillsForResponse");
-	private final static QName _GetNpcKillsForResponse_QNAME = new QName("http://evetool.hael.com/", "getNpcKillsForResponse");
-    private final static QName _GetNpcKillsFor_QNAME = new QName("http://evetool.hael.com/", "getNpcKillsFor");
-    private final static QName _NotEnoughArguments_QNAME = new QName("http://evetool.hael.com/", "NotEnoughArguments");
     private final static QName _ShortestRoute_QNAME = new QName("http://evetool.hael.com/", "shortestRoute");
     private final static QName _ShortestRouteResponse_QNAME = new QName("http://evetool.hael.com/", "shortestRouteResponse");
     private final static QName _GetJumpsForResponse_QNAME = new QName("http://evetool.hael.com/", "getJumpsForResponse");
+    private final static QName _SystemNameLookupResponse_QNAME = new QName("http://evetool.hael.com/", "systemNameLookupResponse");
+    private final static QName _GetSystemResponse_QNAME = new QName("http://evetool.hael.com/", "getSystemResponse");
+    private final static QName _GetNpcKillsForResponse_QNAME = new QName("http://evetool.hael.com/", "getNpcKillsForResponse");
+    private final static QName _GetNpcKillsFor_QNAME = new QName("http://evetool.hael.com/", "getNpcKillsFor");
+    private final static QName _NotEnoughArguments_QNAME = new QName("http://evetool.hael.com/", "NotEnoughArguments");
     private final static QName _GetJumpsFor_QNAME = new QName("http://evetool.hael.com/", "getJumpsFor");
     private final static QName _GetPcKillsFor_QNAME = new QName("http://evetool.hael.com/", "getPcKillsFor");
-	private final static QName _SystemNameLookupResponse_QNAME = new QName("http://evetool.hael.com/", "systemNameLookupResponse");
     private final static QName _NotARealSolarSystem_QNAME = new QName("http://evetool.hael.com/", "NotARealSolarSystem");
+    private final static QName _NoPathExistsException_QNAME = new QName("http://evetool.hael.com/", "NoPathExistsException");
     private final static QName _IOException_QNAME = new QName("http://evetool.hael.com/", "IOException");
     private final static QName _GetSystem_QNAME = new QName("http://evetool.hael.com/", "getSystem");
-    private final static QName _NoPathExistsException_QNAME = new QName("http://evetool.hael.com/", "NoPathExistsException");
-    private final static QName _GetSystemResponse_QNAME = new QName("http://evetool.hael.com/", "getSystemResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.hael.wsClient
@@ -64,7 +64,7 @@ public class ObjectFactory {
         return new GetPcKillsFor();
     }
 
-	/**
+    /**
      * Create an instance of {@link NoPathExistsException }
      * 
      */
@@ -73,19 +73,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetSystem }
-     * 
-     */
-    public GetSystem createGetSystem() {
-        return new GetSystem();
-    }
-
-    /**
      * Create an instance of {@link IOException }
      * 
      */
     public IOException createIOException() {
         return new IOException();
+    }
+
+    /**
+     * Create an instance of {@link GetSystem }
+     * 
+     */
+    public GetSystem createGetSystem() {
+        return new GetSystem();
     }
 
     /**
@@ -160,7 +160,7 @@ public class ObjectFactory {
         return new GetPcKillsForResponse();
     }
 
-	/**
+    /**
      * Create an instance of {@link ShortestRouteResponse }
      * 
      */
@@ -208,7 +208,7 @@ public class ObjectFactory {
         return new MapSolarSystemPcKillLog();
     }
 
-	/**
+    /**
      * Create an instance of {@link ActivityLogPK }
      * 
      */
@@ -232,33 +232,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "getPcKillsForResponse")
     public JAXBElement<GetPcKillsForResponse> createGetPcKillsForResponse(GetPcKillsForResponse value) {
         return new JAXBElement<GetPcKillsForResponse>(_GetPcKillsForResponse_QNAME, GetPcKillsForResponse.class, null, value);
-    }
-
-	/**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNpcKillsForResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "getNpcKillsForResponse")
-    public JAXBElement<GetNpcKillsForResponse> createGetNpcKillsForResponse(GetNpcKillsForResponse value) {
-        return new JAXBElement<GetNpcKillsForResponse>(_GetNpcKillsForResponse_QNAME, GetNpcKillsForResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNpcKillsFor }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "getNpcKillsFor")
-    public JAXBElement<GetNpcKillsFor> createGetNpcKillsFor(GetNpcKillsFor value) {
-        return new JAXBElement<GetNpcKillsFor>(_GetNpcKillsFor_QNAME, GetNpcKillsFor.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link NotEnoughArguments }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "NotEnoughArguments")
-    public JAXBElement<NotEnoughArguments> createNotEnoughArguments(NotEnoughArguments value) {
-        return new JAXBElement<NotEnoughArguments>(_NotEnoughArguments_QNAME, NotEnoughArguments.class, null, value);
     }
 
     /**
@@ -289,6 +262,51 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SystemNameLookupResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "systemNameLookupResponse")
+    public JAXBElement<SystemNameLookupResponse> createSystemNameLookupResponse(SystemNameLookupResponse value) {
+        return new JAXBElement<SystemNameLookupResponse>(_SystemNameLookupResponse_QNAME, SystemNameLookupResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetSystemResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "getSystemResponse")
+    public JAXBElement<GetSystemResponse> createGetSystemResponse(GetSystemResponse value) {
+        return new JAXBElement<GetSystemResponse>(_GetSystemResponse_QNAME, GetSystemResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetNpcKillsForResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "getNpcKillsForResponse")
+    public JAXBElement<GetNpcKillsForResponse> createGetNpcKillsForResponse(GetNpcKillsForResponse value) {
+        return new JAXBElement<GetNpcKillsForResponse>(_GetNpcKillsForResponse_QNAME, GetNpcKillsForResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetNpcKillsFor }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "getNpcKillsFor")
+    public JAXBElement<GetNpcKillsFor> createGetNpcKillsFor(GetNpcKillsFor value) {
+        return new JAXBElement<GetNpcKillsFor>(_GetNpcKillsFor_QNAME, GetNpcKillsFor.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NotEnoughArguments }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "NotEnoughArguments")
+    public JAXBElement<NotEnoughArguments> createNotEnoughArguments(NotEnoughArguments value) {
+        return new JAXBElement<NotEnoughArguments>(_NotEnoughArguments_QNAME, NotEnoughArguments.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetJumpsFor }{@code >}}
      * 
      */
@@ -306,15 +324,6 @@ public class ObjectFactory {
         return new JAXBElement<GetPcKillsFor>(_GetPcKillsFor_QNAME, GetPcKillsFor.class, null, value);
     }
 
-	/**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SystemNameLookupResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "systemNameLookupResponse")
-    public JAXBElement<SystemNameLookupResponse> createSystemNameLookupResponse(SystemNameLookupResponse value) {
-        return new JAXBElement<SystemNameLookupResponse>(_SystemNameLookupResponse_QNAME, SystemNameLookupResponse.class, null, value);
-    }
-
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link NotARealSolarSystem }{@code >}}
      * 
@@ -322,6 +331,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "NotARealSolarSystem")
     public JAXBElement<NotARealSolarSystem> createNotARealSolarSystem(NotARealSolarSystem value) {
         return new JAXBElement<NotARealSolarSystem>(_NotARealSolarSystem_QNAME, NotARealSolarSystem.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NoPathExistsException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "NoPathExistsException")
+    public JAXBElement<NoPathExistsException> createNoPathExistsException(NoPathExistsException value) {
+        return new JAXBElement<NoPathExistsException>(_NoPathExistsException_QNAME, NoPathExistsException.class, null, value);
     }
 
     /**
@@ -340,24 +358,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "getSystem")
     public JAXBElement<GetSystem> createGetSystem(GetSystem value) {
         return new JAXBElement<GetSystem>(_GetSystem_QNAME, GetSystem.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link NoPathExistsException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "NoPathExistsException")
-    public JAXBElement<NoPathExistsException> createNoPathExistsException(NoPathExistsException value) {
-        return new JAXBElement<NoPathExistsException>(_NoPathExistsException_QNAME, NoPathExistsException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetSystemResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://evetool.hael.com/", name = "getSystemResponse")
-    public JAXBElement<GetSystemResponse> createGetSystemResponse(GetSystemResponse value) {
-        return new JAXBElement<GetSystemResponse>(_GetSystemResponse_QNAME, GetSystemResponse.class, null, value);
     }
 
 }

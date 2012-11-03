@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="neighbourNames" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="security" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="solarSystemID" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -33,12 +34,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "solarSystem", propOrder = {
     "name",
     "neighbourNames",
+    "security",
     "solarSystemID"
 })
 public class SolarSystem {
 
     protected String name;
     protected List<String> neighbourNames;
+    protected float security;
     protected int solarSystemID;
 
     /**
@@ -92,6 +95,22 @@ public class SolarSystem {
             neighbourNames = new ArrayList<String>();
         }
         return this.neighbourNames;
+    }
+
+    /**
+     * Gets the value of the security property.
+     * 
+     */
+    public float getSecurity() {
+        return security;
+    }
+
+    /**
+     * Sets the value of the security property.
+     * 
+     */
+    public void setSecurity(float value) {
+        this.security = value;
     }
 
     /**

@@ -33,6 +33,7 @@ public class MapSolarSystem implements Serializable {
 	private int solarSystemID;
 
 	private String solarSystemName;
+	private float security;
 
 	public MapSolarSystem() {
 	}
@@ -51,6 +52,20 @@ public class MapSolarSystem implements Serializable {
 
 	public void setSolarSystemName(String solarSystemName) {
 		this.solarSystemName = solarSystemName;
+	}
+
+	/**
+	 * @return the security level
+	 */
+	public float getSecurity() {
+		return security;
+	}
+
+	/**
+	 * @param security the security level to set
+	 */
+	public void setSecurity(float security) {
+		this.security = security;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.hael.evetool.domain;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,6 +75,23 @@ public class SolarSystem implements Comparable<SolarSystem>, Serializable {
 			mapSolarSystem = new MapSolarSystem();
 		}
 		this.mapSolarSystem.setSolarSystemID(id);
+	}
+	
+	/**
+	 * The security level of the solar system
+	 * @return this solar system's security level
+	 */
+	@XmlElement
+	public float getSecurity() {
+		DecimalFormat oneDecimalPlace = new DecimalFormat("#.#");
+		return Float.valueOf(oneDecimalPlace.format(mapSolarSystem.getSecurity()));
+	}
+	
+	public void setSecurity(float security) {
+		if (mapSolarSystem == null) {
+			mapSolarSystem = new MapSolarSystem();
+		}
+		this.mapSolarSystem.setSecurity(security);
 	}
 
 	/**

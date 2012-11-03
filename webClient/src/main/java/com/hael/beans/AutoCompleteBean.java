@@ -31,6 +31,8 @@ public class AutoCompleteBean {
 	private static final Logger log = LoggerFactory
 			.getLogger(AutoCompleteBean.class);
 	private String currentSystem, toSystem;
+	private float minSecurity = -1f;
+	private float maxSecurity = 1f;
 	private List<SolarSystem> route;
 	private JumpCalculatorImplService service = new JumpCalculatorImplService();
 	private JumpCalculator jumpCalculator = service.getJumpCalculatorImplPort();
@@ -123,17 +125,44 @@ public class AutoCompleteBean {
 
 		try {
 			this.route = jumpCalculator.shortestRoute(this.currentSystem,
-					this.toSystem);
+					this.toSystem, minSecurity, maxSecurity);
 		} catch (NoPathExistsException_Exception e) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
-					new FacesMessage("There is no known path between "
-							+ currentSystem + " and " + toSystem));
+					new FacesMessage("There is no path that satisfies these criteria"));
 		} catch (NotARealSolarSystemException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		} catch (NotEnoughArgumentsException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Please fill in both to and from"));
 		}
+	}
+
+	/**
+	 * @return the minSecurity
+	 */
+	public float getMinSecurity() {
+		return minSecurity;
+	}
+
+	/**
+	 * @param minSecurity the minSecurity to set
+	 */
+	public void setMinSecurity(float minSecurity) {
+		this.minSecurity = minSecurity;
+	}
+
+	/**
+	 * @return the maxSecurity
+	 */
+	public float getMaxSecurity() {
+		return maxSecurity;
+	}
+
+	/**
+	 * @param maxSecurity the maxSecurity to set
+	 */
+	public void setMaxSecurity(float maxSecurity) {
+		this.maxSecurity = maxSecurity;
 	}
 
 }

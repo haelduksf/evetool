@@ -30,7 +30,9 @@ public interface JumpCalculator {
 
 	/**
 	 * Returns an ordered list representing the shortest route from
-	 * <code>from</code> to <code>to</code>.
+	 * <code>from</code> to <code>to</code> passing only through systems with
+	 * security levels between <code>minSecurity</code> and
+	 * <code> maxSecurity</code>, inclusive.
 	 * 
 	 * @throws NotARealSolarSystemException
 	 *             when one or both inputs can't be found
@@ -44,12 +46,19 @@ public interface JumpCalculator {
 	 *            the start system
 	 * @param to
 	 *            the destination system
+	 * @param minSecurity
+	 *            the minimum desired security level for systems on the path
+	 * @param maxSecurity
+	 *            the maximum desired security level for systems on the path
+	 * 
 	 * @throws NoPathExistsException
 	 * 
 	 */
 	@WebMethod
 	List<SolarSystem> shortestRoute(@WebParam(name = "from") String from,
-			@WebParam(name = "to") String to)
+			@WebParam(name = "to") String to,
+			@WebParam(name = "minSecurity") float minSecurity,
+			@WebParam(name = "maxSecurity") float maxSecurity)
 			throws NotARealSolarSystemException, NotEnoughArgumentsException,
 			IOException, NoPathExistsException;
 

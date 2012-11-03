@@ -17,7 +17,7 @@
 			<p:panel id="panel" header="Input" style="margin-bottom:10px;">
 				<h:form prependId="false">
 
-					<h:panelGrid columns="5">
+<!-- 					<h:panelGrid columns="5"> -->
 						<h:outputLabel for="from" value="From" />
 						<p:autoComplete id="from"
 							value="#{autoCompleteBean.currentSystem}"
@@ -29,13 +29,15 @@
 						<p:autoComplete id="to" value="#{autoCompleteBean.toSystem}"
 							completeMethod="#{autoCompleteBean.complete}" minQueryLength="3"
 							required="TRUE" />
+						<h:outputLabel for="minSecurity" value="Min. Security" />
+						<p:inputText id="minSecurity" value="#{autoCompleteBean.minSecurity}" maxlength="3" size="3"/>
+						<h:outputLabel for="maxSecurity" value="Max. Security" />
+						<p:inputText id="maxSecurity" value="#{autoCompleteBean.maxSecurity}" maxlength="3" size="3"/>
 						
 
 						<p:commandButton value="Go" update=":panel,:display"
 							action="#{autoCompleteBean.findShortestPath}" />
-<!-- 						<p:message for="from" /> -->
-<!-- 						<p:message for="to" /> -->
-					</h:panelGrid>
+<!-- 					</h:panelGrid> -->
 					<p:messages />
 				</h:form>
 			</p:panel>

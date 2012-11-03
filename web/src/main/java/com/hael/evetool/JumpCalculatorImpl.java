@@ -38,7 +38,7 @@ public class JumpCalculatorImpl implements JumpCalculator {
 	private NavDAO navDAO;
 	
 	@Override
-	public List<SolarSystem> shortestRoute(String from, String to)
+	public List<SolarSystem> shortestRoute(String from, String to, float minSecurity, float maxSecurity)
 			throws NotARealSolarSystemException, NotEnoughArgumentsException,
 			IOException, NoPathExistsException {
 
@@ -73,7 +73,7 @@ public class JumpCalculatorImpl implements JumpCalculator {
 			}
 			if (fromOuterLayer.size() > toOuterLayer.size()) {
 				List<SolarSystem> newOuterLayer = runStep(toVisited,
-						toOuterLayer);
+						toOuterLayer, minSecurity, maxSecurity);
 				for (SolarSystem s : newOuterLayer) {
 					if (fromOuterLayer.contains(s)) {
 						met = true;
@@ -83,7 +83,7 @@ public class JumpCalculatorImpl implements JumpCalculator {
 				toOuterLayer = newOuterLayer;
 			} else {
 				List<SolarSystem> newOuterLayer = runStep(fromVisited,
-						fromOuterLayer);
+						fromOuterLayer, minSecurity, maxSecurity);
 				for (SolarSystem s : newOuterLayer) {
 					if (toOuterLayer.contains(s)) {
 						met = true;
@@ -118,7 +118,7 @@ public class JumpCalculatorImpl implements JumpCalculator {
 
 	private List<SolarSystem> runStep(
 			Map<SolarSystem, DefaultMutableTreeNode> visited,
-			List<SolarSystem> outerLayer) throws NoPathExistsException {
+			List<SolarSystem> outerLayer, float minSecurity, float maxSecurity) throws NoPathExistsException {
 
 		// get new systems
 		List<SolarSystem> newLayer = new ArrayList<SolarSystem>();
@@ -132,8 +132,11 @@ public class JumpCalculatorImpl implements JumpCalculator {
 							t);
 					DefaultMutableTreeNode parent = visited.get(s);
 					parent.add(newNode);
+					if (t.getSecurity() <= maxSecurity && t.getSecurity() >= minSecurity) {
+						newLayer.add(t);
+					}
+					
 					visited.put(t, newNode);
-					newLayer.add(t);
 				}
 			}
 		}
