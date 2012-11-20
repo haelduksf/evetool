@@ -9,6 +9,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>WEB-INF/applicationContext.xml</param-value>
 	</context-param>
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -27,9 +28,9 @@
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
-	
+
 	<error-page>
-        <exception-type>java.lang.Throwable</exception-type>
-        <location>/error.xhtml</location>
-    </error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/error.xhtml</location>
+	</error-page>
 </web-app>
