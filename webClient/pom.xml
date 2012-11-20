@@ -51,6 +51,11 @@
 			<version>3.4</version>
 		</dependency>
 		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>midnight</artifactId>
+			<version>1.0.8</version>
+		</dependency>
+		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>1.6.12</version>
