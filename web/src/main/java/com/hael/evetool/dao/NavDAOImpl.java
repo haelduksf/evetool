@@ -113,6 +113,7 @@ public class NavDAOImpl implements NavDAO {
 	}
 
 	@Override
+	@Transactional
 	public void saveLog(ActivityLog log) {
 		entityManager.persist(log);
 	}
