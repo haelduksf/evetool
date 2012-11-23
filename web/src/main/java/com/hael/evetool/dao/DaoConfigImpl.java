@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.beimin.eveapi.core.ApiException;
 import com.beimin.eveapi.map.jumps.JumpsParser;
@@ -81,10 +80,8 @@ public class DaoConfigImpl implements DaoConfig {
 		}
 	}
 
-	@Transactional
 	private Date importJumpData() {
-		log.info("Importing Jump Data @ {}",
-				new Date(System.currentTimeMillis()));
+		log.info("Importing Jump Data");
 		JumpsParser jumpsParser = JumpsParser.getInstance();
 		JumpsResponse jumpsResponse = null;
 
@@ -118,10 +115,8 @@ public class DaoConfigImpl implements DaoConfig {
 		return cachedUntil;
 	}
 
-	@Transactional
 	private Date importKillData() {
-		log.info("Importing Kill Data @ "
-				+ new Date());
+		log.info("Importing Kill Data");
 		KillsParser killsParser = KillsParser.getInstance();
 		KillsResponse killsResponse = null;
 
@@ -138,6 +133,7 @@ public class DaoConfigImpl implements DaoConfig {
 		Map<Integer, Integer> podKills = killsResponse.getPodKills();
 		Map<Integer, Integer> shipKills = killsResponse.getShipKills();
 		Date timeRetrieved = killsResponse.getCurrentTime();
+		Date cachedUntil = killsResponse.getCachedUntil();
 
 		for (SolarSystem s : solarSystems) {
 			int ssid = s.getSolarSystemID();
@@ -163,9 +159,10 @@ public class DaoConfigImpl implements DaoConfig {
 			navDAO.saveLog(pcKillLog);
 		}
 
+		
 		log.info("Kill import complete. Next kill fetch scheduled for "
-				+ killsResponse.getCachedUntil());
-		return killsResponse.getCachedUntil();
+				+ cachedUntil);
+		return cachedUntil;
 	}
 
 	/**
