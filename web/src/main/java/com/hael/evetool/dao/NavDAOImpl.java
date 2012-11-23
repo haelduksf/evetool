@@ -123,9 +123,9 @@ public class NavDAOImpl implements NavDAO {
 		// circular reference, so setup is done here instead
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"springConfig.xml");
-		DaoConfig daoConfigImpl = context
-				.getBean(com.hael.evetool.dao.DaoConfigImpl.class);
-		solarSystems = daoConfigImpl.setupDao();
+		DaoConfig daoConfig = context
+				.getBean(com.hael.evetool.dao.DaoConfig.class);
+		solarSystems = daoConfig.setupDao();
 	}
 
 	private List<SolarSystem> getSolarSystems() throws IOException {
