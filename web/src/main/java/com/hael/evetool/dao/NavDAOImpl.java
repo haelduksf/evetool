@@ -3,6 +3,8 @@ package com.hael.evetool.dao;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -114,8 +116,10 @@ public class NavDAOImpl implements NavDAO {
 
 	@Override
 	@Transactional
-	public void saveLog(ActivityLog log) {
-		entityManager.persist(log);
+	public void saveLogs(Set<ActivityLog> logs) {
+		for (ActivityLog log : logs) {
+			entityManager.persist(log);
+		}
 	}
 
 	private void setupDao() throws IOException {

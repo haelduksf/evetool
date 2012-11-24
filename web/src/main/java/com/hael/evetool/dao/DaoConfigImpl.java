@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,6 +21,7 @@ import com.beimin.eveapi.map.jumps.JumpsParser;
 import com.beimin.eveapi.map.jumps.JumpsResponse;
 import com.beimin.eveapi.map.kills.KillsParser;
 import com.beimin.eveapi.map.kills.KillsResponse;
+import com.hael.evetool.domain.ActivityLog;
 import com.hael.evetool.domain.MapSolarSystem;
 import com.hael.evetool.domain.MapSolarSystemJumpLog;
 import com.hael.evetool.domain.MapSolarSystemNpcKillLog;
@@ -97,6 +100,7 @@ public class DaoConfigImpl implements DaoConfig {
 		Map<Integer, Integer> jumpMap = jumpsResponse.getSystemJumps();
 		Date timeRetrieved = jumpsResponse.getCurrentTime();
 		Date cachedUntil = jumpsResponse.getCachedUntil();
+		Set<ActivityLog> jumpLogs = new HashSet<ActivityLog>();
 		
 		for (SolarSystem s : solarSystems) {
 			int ssid = s.getSolarSystemID();
@@ -108,8 +112,9 @@ public class DaoConfigImpl implements DaoConfig {
 
 			MapSolarSystemJumpLog jumpLog = new MapSolarSystemJumpLog(ssid,
 					timeRetrieved, jumpCount);
-			navDAO.saveLog(jumpLog);
+			jumpLogs.add(jumpLog);
 		}
+		navDAO.saveLogs(jumpLogs);
 		log.info("Jump import complete. Next jump fetch scheduled for "
 				+ cachedUntil);
 		return cachedUntil;
@@ -134,6 +139,9 @@ public class DaoConfigImpl implements DaoConfig {
 		Map<Integer, Integer> shipKills = killsResponse.getShipKills();
 		Date timeRetrieved = killsResponse.getCurrentTime();
 		Date cachedUntil = killsResponse.getCachedUntil();
+		
+		Set<ActivityLog> npcKillLogs = new HashSet<ActivityLog>();
+		Set<ActivityLog> pcKillLogs = new HashSet<ActivityLog>();
 
 		for (SolarSystem s : solarSystems) {
 			int ssid = s.getSolarSystemID();
@@ -155,9 +163,12 @@ public class DaoConfigImpl implements DaoConfig {
 					ssid, timeRetrieved, factionKillCount);
 			MapSolarSystemPcKillLog pcKillLog = new MapSolarSystemPcKillLog(
 					ssid, timeRetrieved, shipKillCount + podKillCount);
-			navDAO.saveLog(npcKillLog);
-			navDAO.saveLog(pcKillLog);
+			npcKillLogs.add(npcKillLog);
+			pcKillLogs.add(pcKillLog);
+			
 		}
+		navDAO.saveLogs(pcKillLogs);
+		navDAO.saveLogs(npcKillLogs);
 
 		
 		log.info("Kill import complete. Next kill fetch scheduled for "

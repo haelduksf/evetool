@@ -3,6 +3,7 @@ package com.hael.evetool.dao;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import com.hael.evetool.domain.ActivityLog;
 import com.hael.evetool.domain.MapSolarSystem;
@@ -58,11 +59,6 @@ public interface NavDAO {
 	 */
 	List<MapSolarSystem> getSystemDump();
 	/**
-	 * Persist an ApiLog to the DB.
-	 * @param log the log entity to be persisted.
-	 */
-	void saveLog(ActivityLog log);
-	/**
 	 * Creates and returns a new SolarSystem.
 	 * @param id the SSID of the SolarSystem
 	 * @return the singleton object representing that solar system. 
@@ -114,5 +110,10 @@ public interface NavDAO {
 	 */
 	List<MapSolarSystemPcKillLog> getPcKillsFor(SolarSystem solarSystem,
 			Date from, Date to);
+	/**
+	 * Persist a set of ActivityLogs to the DB.
+	 * @param logs the set of logs to be persisted.
+	 */
+	void saveLogs(Set<ActivityLog> logs);
 
 }
