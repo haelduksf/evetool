@@ -16,25 +16,28 @@
 			<p:panel id="panel" header="Input" style="margin-bottom:10px;">
 				<h:form prependId="false">
 
-						<h:outputLabel for="from" value="From" />
-						<p:autoComplete id="from"
-							value="#{autoCompleteBean.currentSystem}"
-							completeMethod="#{autoCompleteBean.complete}" minQueryLength="3"
-							required="TRUE" />
-						
+					<h:outputLabel for="from" value="From" />
+					<p:autoComplete id="from" value="#{autoCompleteBean.currentSystem}"
+						completeMethod="#{autoCompleteBean.complete}" minQueryLength="3"
+						required="TRUE" onfocus="this.select();" />
 
-						<h:outputLabel for="to" value="To" />
-						<p:autoComplete id="to" value="#{autoCompleteBean.toSystem}"
-							completeMethod="#{autoCompleteBean.complete}" minQueryLength="3"
-							required="TRUE" />
-						<h:outputLabel for="minSecurity" value="Min. Security" />
-						<p:inputText id="minSecurity" value="#{autoCompleteBean.minSecurity}" maxlength="3" size="3"/>
-						<h:outputLabel for="maxSecurity" value="Max. Security" />
-						<p:inputText id="maxSecurity" value="#{autoCompleteBean.maxSecurity}" maxlength="3" size="3"/>
-						
 
-						<p:commandButton value="Go" update=":panel,:display"
-							action="#{autoCompleteBean.findShortestPath}" />
+					<h:outputLabel for="to" value="To" />
+					<p:autoComplete id="to" value="#{autoCompleteBean.toSystem}"
+						completeMethod="#{autoCompleteBean.complete}" minQueryLength="3"
+						required="TRUE" onfocus="this.select();" />
+					<h:outputLabel for="minSecurity" value="Min. Security" />
+					<p:inputText id="minSecurity"
+						value="#{autoCompleteBean.minSecurity}" maxlength="3" size="3"
+						onfocus="this.select();" />
+					<h:outputLabel for="maxSecurity" value="Max. Security" />
+					<p:inputText id="maxSecurity"
+						value="#{autoCompleteBean.maxSecurity}" maxlength="3" size="3"
+						onfocus="this.select();" />
+
+
+					<p:commandButton value="Go" update=":panel,:display"
+						action="#{autoCompleteBean.findShortestPath}" />
 					<p:messages />
 				</h:form>
 			</p:panel>
@@ -42,17 +45,19 @@
 		</p:layoutUnit>
 		<p:layoutUnit position="west" size="200" resizable="true"
 			collapsable="true" scrollable="true">
-			<p:accordionPanel id="display" multiple="true" value="${autoCompleteBean.route}" var="system">
-					<p:tab title="#{system.name}">
-						<h:panelGrid>
-							<h:form>
-								<p:commandButton value="Details"
-									update=":systemDetails">
-									<f:setPropertyActionListener target="#{solarSystemDetailsBean.solarSystem}" value="#{system}" />
-								</p:commandButton>
-							</h:form>
-						</h:panelGrid>
-					</p:tab>
+			<p:accordionPanel id="display" multiple="true"
+				value="${autoCompleteBean.route}" var="system">
+				<p:tab title="#{system.name}">
+					<h:panelGrid>
+						<h:form>
+							<p:commandButton value="Details" update=":systemDetails">
+								<f:setPropertyActionListener
+									target="#{solarSystemDetailsBean.solarSystem}"
+									value="#{system}" />
+							</p:commandButton>
+						</h:form>
+					</h:panelGrid>
+				</p:tab>
 			</p:accordionPanel>
 		</p:layoutUnit>
 		<p:layoutUnit position="center">

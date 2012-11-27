@@ -1,6 +1,7 @@
 package com.hael.beans;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -38,6 +39,16 @@ public class AutoCompleteBean {
 	private JumpCalculator jumpCalculator = service.getJumpCalculatorImplPort();
 
 	public AutoCompleteBean() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Map<String, String> requestHeaders = context.getExternalContext().getRequestHeaderMap();
+		String trust = requestHeaders.get("eve_trusted");
+		if ( trust != null && trust.equals("Yes")) {
+			log.debug("Trust has been granted.");
+			setCurrentSystem(requestHeaders.get("eve_solarsystemname"));
+		}
+		else {
+			log.debug("Trust not granted.");
+		}
 	}
 
 	/**
