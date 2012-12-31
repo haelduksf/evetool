@@ -7,7 +7,10 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>WEB-INF/applicationContext.xml</param-value>
+		<param-value>
+			WEB-INF/applicationContext.xml
+			WEB-INF/applicationContext-security.xml			
+		</param-value>
 	</context-param>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
@@ -15,6 +18,9 @@
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
 
 	<servlet>
@@ -28,8 +34,20 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>/user/index.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<error-page>

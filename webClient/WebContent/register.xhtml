@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Nav computer registration</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:outputLabel value="Desired username" for="username" />
+		<p:inputText id="username" value="${registrationBean.username}" />
+		<br/>
+		<p:outputLabel value="Password" for="password" />
+		<p:inputText id="password" type="password" value="${registrationBean.password}" />
+		<br/>
+		<p:outputLabel value="Repeat password" for="passwordConfirm" />
+		<p:inputText id="passwordConfirm" type="password" value="${registrationBean.passwordConfirm}" />
+		<br/>
+		<p:commandButton value="Submit" action="${registrationBean.register}" />
+	</h:form>
+</h:body>
+</html>
