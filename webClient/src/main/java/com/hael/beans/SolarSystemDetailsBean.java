@@ -1,5 +1,6 @@
 package com.hael.beans;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -35,8 +36,9 @@ import com.hael.wsClient.SolarSystem;
  */
 @ManagedBean
 @ViewScoped
-public class SolarSystemDetailsBean {
+public class SolarSystemDetailsBean implements Serializable{
 
+	private static final long serialVersionUID = 1841890546995062439L;
 	private static final int DEFAULT_GRAPH_TIME = -24 ; // 24 hours
 	private SolarSystem solarSystem;
 	private JumpCalculatorImplService service = new JumpCalculatorImplService();
@@ -87,7 +89,7 @@ public class SolarSystemDetailsBean {
 			Calendar timeRetrieved = activity.getPk().getTimeRetrieved().toGregorianCalendar();
 			String minutes = "" + timeRetrieved.get(Calendar.MINUTE);
 			if (minutes.length() == 1) {
-				minutes = "0" + minutes;
+				minutes = "0" + minutes; 
 			}
 			String conciseDate = timeRetrieved.get(Calendar.HOUR_OF_DAY) + ":" + minutes;
 			result.set(conciseDate, activity.getValue());
