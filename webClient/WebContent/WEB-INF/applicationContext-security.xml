@@ -32,8 +32,9 @@
 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/user/**" access="ROLE_USER" />
 		<form-login login-page="/login.xhtml" default-target-url="/user/index.xhtml"
-		authentication-failure-url="/login.xhtml?login_error=1"
-		login-processing-url="/j_spring_security_check" />
-		<logout logout-url="/logout.xhtml" logout-success-url="/login.xhtml" /> 
+			authentication-failure-url="/login.xhtml?login_error=1"
+			login-processing-url="/j_spring_security_check" />
+		<logout logout-url="/logout.xhtml" logout-success-url="/login.xhtml" />
+		<remember-me data-source-ref="securityDataSource" />
 	</http>
 </beans:beans>
