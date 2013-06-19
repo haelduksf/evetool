@@ -9,8 +9,8 @@
 	<title>Nav Computer login</title>
 </h:head>
 <h:body>
-	<p:dialog id="loginDialog" header="Login" widgetVar="login"
-		modal="true" visible="true" resizable="false" closable="false">
+<!-- 	<p:dialog id="loginDialog" header="Login" widgetVar="login" -->
+<!-- 		modal="true" visible="true" resizable="false" closable="false"> -->
 		<h:form id="loginForm" prependId="false">
 
 			<p:panelGrid columns="3">
@@ -36,6 +36,6 @@
 				value="Login Failed: #{SPRING_SECURITY_LAST_EXCEPTION.message}"
 				style="color:red" />
 		</h:form>
-	</p:dialog>
+<!-- 	</p:dialog> -->
 </h:body>
 </html>
